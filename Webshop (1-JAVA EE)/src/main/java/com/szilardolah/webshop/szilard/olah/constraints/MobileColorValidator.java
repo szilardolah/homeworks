@@ -1,8 +1,8 @@
 package com.szilardolah.webshop.szilard.olah.constraints;
 
 import com.szilardolah.webshop.szilard.olah.beans.MobileType;
-import enums.Color;
-import static enums.Color.*;
+import com.szilardolah.webshop.szilard.olah.enums.Color;
+import static com.szilardolah.webshop.szilard.olah.enums.Color.*;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 

@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.szilardolah.webshop.szilard.olah.beans;
 
 import com.szilardolah.webshop.szilard.olah.constraints.Util;
-import enums.Color;
-import enums.Currency;
-import enums.Manufacturer;
+import com.szilardolah.webshop.szilard.olah.enums.Color;
+import com.szilardolah.webshop.szilard.olah.enums.Currency;
+import com.szilardolah.webshop.szilard.olah.enums.Manufacturer;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;

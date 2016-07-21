@@ -1,4 +1,4 @@
-package enums;
+package com.szilardolah.webshop.szilard.olah.enums;
 
 /**
  *

@@ -1,9 +1,9 @@
 package com.szilardolah.webshop.szilard.olah.beans;
 
 import com.szilardolah.webshop.szilard.olah.constraints.MobileColor;
-import enums.Color;
-import enums.Currency;
-import enums.Manufacturer;
+import com.szilardolah.webshop.szilard.olah.enums.Color;
+import com.szilardolah.webshop.szilard.olah.enums.Currency;
+import com.szilardolah.webshop.szilard.olah.enums.Manufacturer;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

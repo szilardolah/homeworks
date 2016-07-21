@@ -1,7 +1,9 @@
 package com.szilardolah.webshop.szilard.olah.beans;
 
+import com.szilardolah.webshop.szilard.olah.constraints.DateOfBirth;
+import com.szilardolah.webshop.szilard.olah.constraints.Name;
 import com.szilardolah.webshop.szilard.olah.constraints.Past;
-import enums.Sex;
+import com.szilardolah.webshop.szilard.olah.enums.Sex;
 import java.util.Calendar;
 import java.util.Date;
 import javax.validation.constraints.NotNull;
@@ -14,8 +16,8 @@ import com.szilardolah.webshop.szilard.olah.constraints.Password;
  *
  * @author Szilard <szilard.olah@yahoo.com>
  */
-//@Name 
-//@DateOfBirth
+@Name 
+@DateOfBirth
 public class UserDTO {    
     @NotNull @Size(min = 6)
     private String username;
