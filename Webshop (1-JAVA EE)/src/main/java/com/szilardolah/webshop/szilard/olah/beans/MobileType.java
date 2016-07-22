@@ -4,6 +4,7 @@ import com.szilardolah.webshop.szilard.olah.constraints.MobileColor;
 import com.szilardolah.webshop.szilard.olah.enums.Color;
 import com.szilardolah.webshop.szilard.olah.enums.Currency;
 import com.szilardolah.webshop.szilard.olah.enums.Manufacturer;
+import java.util.Objects;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,6 +34,17 @@ public class MobileType {
     private Color color;
 
     
+    public MobileType() {
+        //Default constructor for ObjectMapper
+    }
+    
+    public MobileType(String type, Manufacturer manufacturer, Integer price, Currency currency, Color color) {
+        this.type = type;
+        this.manufacturer = manufacturer;
+        this.price = price;
+        this.currency = currency;
+        this.color = color;
+    }
     
     public MobileType(String id, String type, Manufacturer manufacturer, Integer price, Currency currency, Color color) {
         this.id = id;
@@ -91,6 +103,48 @@ public class MobileType {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 13 * hash + Objects.hashCode(this.type);
+        hash = 13 * hash + Objects.hashCode(this.manufacturer);
+        hash = 13 * hash + Objects.hashCode(this.price);
+        hash = 13 * hash + Objects.hashCode(this.currency);
+        hash = 13 * hash + Objects.hashCode(this.color);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MobileType other = (MobileType) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.type, other.type)) {
+            return false;
+        }
+        if (this.manufacturer != other.manufacturer) {
+            return false;
+        }
+        if (!Objects.equals(this.price, other.price)) {
+            return false;
+        }
+        if (this.currency != other.currency) {
+            return false;
+        }
+        return this.color == other.color;
     }
     
     

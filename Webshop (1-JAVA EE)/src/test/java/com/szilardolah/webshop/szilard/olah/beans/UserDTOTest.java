@@ -37,10 +37,10 @@ public class UserDTOTest {
     @Before
     public void initUserDTO() {
         userDTO = new UserDTO.Builder("silverwolf454", "blackjac123AAA..,", "samuel.ross@example.com")
-                .setFirstname("Samuel")
-                .setLastname("Ross")
                 .setAddress("5655 Oregon, Santa Ana")
                 .setPhone("+36-102365478")
+                .setFirstname("Samuel")
+                .setLastname("Ross")
                 .setSex(Sex.MALE)
                 .setDateOfBirth(new Date(590968800000l))
                 .setAdmin(true)
@@ -100,6 +100,25 @@ public class UserDTOTest {
         checkViolations(1, incorrectRegDate);
     }
     
+    @Test
+    public void givenNameIsIncorrect() {
+        userDTO.setFirstname("Samuel");
+        userDTO.setLastname(null);
+        checkViolations(1, userDTO);
+        userDTO.setFirstname(null);
+        userDTO.setLastname("Ross");
+        checkViolations(1, userDTO);
+    }
+    
+    @Test
+    public void givenBirthDateIsIncorrect() {
+        userDTO.setDateOfBirth(null);
+        checkViolations(1, userDTO);
+        userDTO.setDateOfBirth(new Date(1506117600000l)); // 09/23/2017
+        checkViolations(1, userDTO);
+    }    
+    
+    
     private void checkViolation(Set<ConstraintViolation<UserDTO>> violations, Object invalidObejct) {
         ConstraintViolation<UserDTO> violation = violations.iterator().next();
         assertEquals(invalidObejct, violation.getInvalidValue());
@@ -113,4 +132,5 @@ public class UserDTOTest {
             checkViolation(violations, invalidObject);
         }
     }
+
 }

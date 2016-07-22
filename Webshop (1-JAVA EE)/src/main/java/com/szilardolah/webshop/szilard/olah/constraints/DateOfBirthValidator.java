@@ -25,12 +25,8 @@ public class DateOfBirthValidator implements ConstraintValidator<DateOfBirth, Us
             return false;
         }
         
-        if (Util.timeInMillis(t.getDateOfBirth()) < Util.timeInMillis(t.getRegistrationDate()) &&
-            Util.differenceInYear(t.getDateOfBirth()) >= 18) {
-                return true;
-        }
-        
-        return false;
+        return Util.timeInMillis(t.getDateOfBirth()) < Util.timeInMillis(t.getRegistrationDate()) &&
+                Util.differenceInYear(t.getDateOfBirth()) >= 18;
     }
 
 }

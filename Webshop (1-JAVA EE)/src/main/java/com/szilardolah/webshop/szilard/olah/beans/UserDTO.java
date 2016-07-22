@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import com.szilardolah.webshop.szilard.olah.constraints.Password;
+import java.util.Objects;
 
 
 /**
@@ -46,7 +47,10 @@ public class UserDTO {
     
     private boolean admin;
 
-
+    public UserDTO() {
+        //Default constructor for ObjectMapper
+    }
+    
     private UserDTO(Builder builder) {
         this.username = builder.username;
         this.password = builder.password;
@@ -59,10 +63,7 @@ public class UserDTO {
         this.registrationDate = builder.registrationDate;
         this.dateOfBirth = builder.dateOfBirth;
         this.admin = builder.admin;
-    }  
-   
-    
-    
+    }            
     
     public String getUsername() {
         return username;
@@ -151,6 +152,70 @@ public class UserDTO {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.username);
+        hash = 47 * hash + Objects.hashCode(this.password);
+        hash = 47 * hash + Objects.hashCode(this.firstname);
+        hash = 47 * hash + Objects.hashCode(this.lastname);
+        hash = 47 * hash + Objects.hashCode(this.address);
+        hash = 47 * hash + Objects.hashCode(this.phone);
+        hash = 47 * hash + Objects.hashCode(this.email);
+        hash = 47 * hash + Objects.hashCode(this.sex);
+        hash = 47 * hash + Objects.hashCode(this.registrationDate);
+        hash = 47 * hash + Objects.hashCode(this.dateOfBirth);
+        hash = 47 * hash + (this.admin ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UserDTO other = (UserDTO) obj;
+        if (this.admin != other.admin) {
+            return false;
+        }
+        if (!Objects.equals(this.username, other.username)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.firstname, other.firstname)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastname, other.lastname)) {
+            return false;
+        }
+        if (!Objects.equals(this.address, other.address)) {
+            return false;
+        }
+        if (!Objects.equals(this.phone, other.phone)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (this.sex != other.sex) {
+            return false;
+        }
+        if (!Objects.equals(this.registrationDate, other.registrationDate)) {
+            return false;
+        }
+        return Objects.equals(this.dateOfBirth, other.dateOfBirth);
+    }
+    
+    
     
     public static class Builder {
         private String username;
@@ -231,9 +296,5 @@ public class UserDTO {
             return new UserDTO(this);
         }
 
-    }
-
-    
-    
-    
+    }    
 }

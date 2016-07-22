@@ -7,13 +7,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.ReportAsSingleViolation;
-
 /**
  *
  * @author Szilard <szilard.olah@yahoo.com>
  */
-@ReportAsSingleViolation
 @Constraint(validatedBy = {DateOfBirthValidator.class})
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

@@ -21,11 +21,7 @@ public class NameValidator implements ConstraintValidator<Name, UserDTO>{
         String firstname = t.getFirstname();
         String lastname = t.getLastname();
         
-        if ((firstname == null && lastname == null)  ||  (firstname != null && lastname != null)) {
-            return true;
-        }
-        
-        return false;
+        return (firstname == null && lastname == null)  ||  (firstname != null && lastname != null);
     }
 
 }
