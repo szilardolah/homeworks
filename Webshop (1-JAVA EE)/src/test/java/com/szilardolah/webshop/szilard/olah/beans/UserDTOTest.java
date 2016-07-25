@@ -60,68 +60,68 @@ public class UserDTOTest {
     
     @Test
     public void usernameHasIncorrectLength() {
-        final String incorrectUsername = "yyy";  // less than 6 characters
+        final String incorrectUsername = "yyy"; 
         userDTO.setUsername(incorrectUsername);
         checkViolations(1, incorrectUsername);
     }
 
     @Test
-    public void passwordIsNull() {  //negative
+    public void passwordIsNull() {
         userDTO.setPassword(null); 
         checkViolations(1, null);
     }
     
     @Test
-    public void passwordHasIncorrectLength() { //negative
-        final String invalidPassword = "aa";  // less than 6 characters 
+    public void passwordHasIncorrectLength() { 
+        final String invalidPassword = "aa"; 
         userDTO.setPassword(invalidPassword);
         checkViolations(1, invalidPassword);
     }
     
     @Test
-    public void passwordContainsLowerCaseCharactersOnly() { //negative
+    public void passwordContainsLowerCaseCharactersOnly() {
         final String invalidPassword = "aaabbcc"; 
         userDTO.setPassword(invalidPassword);
         checkViolations(1, invalidPassword);
     }
     
     @Test
-    public void passwordContainsUpperCaseCharactersOnly() { //negative
+    public void passwordContainsUpperCaseCharactersOnly() { 
         final String invalidPassword = "AABBCC"; 
         userDTO.setPassword(invalidPassword);
         checkViolations(1, invalidPassword);
     }
     
     @Test
-    public void passwordContainsDigitsOnly() { //negative
+    public void passwordContainsDigitsOnly() { 
         final String invalidPassword = "123"; 
         userDTO.setPassword(invalidPassword);
         checkViolations(1, invalidPassword);
     }
  
     @Test
-    public void passwordContainsSpecialCharactersOnly() {  //negative
+    public void passwordContainsSpecialCharactersOnly() {
         final String invalidPassword = "=+<>.,"; 
         userDTO.setPassword(invalidPassword);
         checkViolations(1, invalidPassword);
     }
     
     @Test
-    public void passwordContainsLowerAndUpperCaseCharacters() { //negative
+    public void passwordContainsLowerAndUpperCaseCharacters() {
         final String invalidPassword = "AABBCCxxxyyyzzz"; 
         userDTO.setPassword(invalidPassword);
         checkViolations(1, invalidPassword);
     }
     
     @Test
-    public void passwordContainsLowerCaseAndUpperCaseCharactersAndDigits() { //positive
+    public void passwordContainsLowerCaseAndUpperCaseCharactersAndDigits() { 
         final String invalidPassword = "AABBCCxxxyyyzzz33"; 
         userDTO.setPassword(invalidPassword);
         checkViolations(0, invalidPassword);
     }
     
     @Test
-    public void passwordContainsLowerCaseAndUpperCaseAndSpecialCharacters() { //positive
+    public void passwordContainsLowerCaseAndUpperCaseAndSpecialCharacters() {
         final String invalidPassword = "AABBCCxxxyyyzzz./="; 
         userDTO.setPassword(invalidPassword);
         checkViolations(0, invalidPassword);
@@ -163,7 +163,7 @@ public class UserDTOTest {
     
     @Test
     public void givenBirthDateIsIncorrect() {
-        userDTO.setDateOfBirth(new Date(1506117600000l)); // 09/23/2017
+        userDTO.setDateOfBirth(new Date(1506117600000l)); 
         checkViolations(1, userDTO);
     }
     

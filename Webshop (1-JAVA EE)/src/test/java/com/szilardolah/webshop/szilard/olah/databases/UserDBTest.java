@@ -3,6 +3,7 @@ package com.szilardolah.webshop.szilard.olah.databases;
 import com.szilardolah.webshop.szilard.olah.beans.UserDTO;
 import com.szilardolah.webshop.szilard.olah.enums.Sex;
 import com.szilardolah.webshop.szilard.olah.exceptions.UserAlreadyExistsException;
+import com.szilardolah.webshop.szilard.olah.exceptions.UnknownUserException;
 import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +13,6 @@ import static org.junit.Assert.*;
  *
  * @author Szilard
  */
-import com.szilardolah.webshop.szilard.olah.exceptions.UnknownUserException;
 public class UserDBTest {
     
     private UserDTO userDTO;

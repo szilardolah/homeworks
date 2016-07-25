@@ -2,7 +2,6 @@ package com.szilardolah.webshop.szilard.olah.beans;
 
 import com.szilardolah.webshop.szilard.olah.constraints.DateOfBirth;
 import com.szilardolah.webshop.szilard.olah.constraints.Name;
-import com.szilardolah.webshop.szilard.olah.constraints.Past;
 import com.szilardolah.webshop.szilard.olah.enums.Sex;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,6 +12,7 @@ import com.szilardolah.webshop.szilard.olah.constraints.Password;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.validation.constraints.Past;
 
 
 /**
@@ -43,7 +43,7 @@ public class UserDTO {
     
     private Sex sex;
     
-    @NotNull @Past
+    @NotNull @Past()
     private Date registrationDate;
     
     private Date dateOfBirth;

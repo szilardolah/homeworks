@@ -39,7 +39,7 @@ public class MobileInventoryTest {
        
     @Test (expected = MobileTypeAlreadyExistsException.class)
     public void addNewMobileTypeExceptedException() {      
-         inventory.addNewMobileType(mobileType);        
+        inventory.addNewMobileType(mobileType);        
         inventory.addNewMobileType(mobileType);
     }
     

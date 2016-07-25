@@ -1,6 +1,6 @@
 package com.szilardolah.webshop.szilard.olah.beans;
 
-import coma.szilardolah.webshop.szilard.olah.utils.Util;
+import com.szilardolah.webshop.szilard.olah.utils.Util;
 import com.szilardolah.webshop.szilard.olah.enums.Color;
 import com.szilardolah.webshop.szilard.olah.enums.Currency;
 import com.szilardolah.webshop.szilard.olah.enums.Manufacturer;
@@ -73,7 +73,7 @@ public class MobileTypeTest {
     
     @Test
     public void typeHasIncorrectLength() {
-        final String invalidType = "ww";  //min 3 characters  
+        final String invalidType = "ww";  
         mobileType.setType(invalidType);
         checkViolations(1, invalidType);
     }
@@ -135,7 +135,7 @@ public class MobileTypeTest {
     }
 
     @Test
-    public void samsungHasNotCorrectColor() {  // already tested its positive case (in optimalCase)
+    public void samsungHasNotCorrectColor() {
         Color invalidColor = Color.GREEN;
         mobileType.setManufacturer(Manufacturer.SAMSUNG);
         mobileType.setColor(invalidColor);       

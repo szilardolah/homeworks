@@ -59,8 +59,8 @@ public class Main {
     public static void main(String[] args) {        
         Main m = new Main();
         try {
-            m.setMobileInventory("mobiletypes.json");   // return: MobileInventory instance
-            m.setUserDB("users.json");                  // return: UserDB instance
+            m.setMobileInventory("mobiletypes.json");   
+            m.setUserDB("users.json");                  
         } catch (IOException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
         }

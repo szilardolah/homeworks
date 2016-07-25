@@ -37,7 +37,7 @@ public class UserDB {
             return users.get(username);
         } else {
             throw new UnknownUserException(
-                    "Unknown user by given username. First, add to database.");
+                    "Unknown user by given username. First, add to the database.");
         }
     }    
     

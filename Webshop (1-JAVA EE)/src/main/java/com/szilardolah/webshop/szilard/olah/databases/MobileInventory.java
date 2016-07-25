@@ -2,7 +2,7 @@ package com.szilardolah.webshop.szilard.olah.databases;
 
 import com.szilardolah.webshop.szilard.olah.exceptions.UnknownMobileTypeException;
 import com.szilardolah.webshop.szilard.olah.beans.MobileType;
-import coma.szilardolah.webshop.szilard.olah.utils.Util;
+import com.szilardolah.webshop.szilard.olah.utils.Util;
 import com.szilardolah.webshop.szilard.olah.exceptions.MobileTypeAlreadyExistsException;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +26,7 @@ public class MobileInventory {
             return mobileType;
         } else {
             throw new MobileTypeAlreadyExistsException(
-                    mobileType.getType() + " has already exists in the inventory!");
+                    mobileType.getType() + " is already exists in the inventory!");
        }
     }
     

@@ -1,4 +1,4 @@
-package coma.szilardolah.webshop.szilard.olah.utils;
+package com.szilardolah.webshop.szilard.olah.utils;
 
 import java.util.Calendar;
 import java.util.Date;
