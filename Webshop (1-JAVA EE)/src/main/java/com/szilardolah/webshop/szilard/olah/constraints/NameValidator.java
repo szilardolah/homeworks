@@ -17,9 +17,9 @@ public class NameValidator implements ConstraintValidator<Name, UserDTO>{
     }
 
     @Override
-    public boolean isValid(UserDTO t, ConstraintValidatorContext cvc) {
-        String firstname = t.getFirstname();
-        String lastname = t.getLastname();
+    public boolean isValid(UserDTO userDTO, ConstraintValidatorContext cvc) {
+        String firstname = userDTO.getFirstname();
+        String lastname = userDTO.getLastname();
         
         return (firstname == null && lastname == null)  ||  (firstname != null && lastname != null);
     }

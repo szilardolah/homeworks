@@ -23,8 +23,7 @@ import javax.validation.constraints.Size;
 @Pattern.List({
     @Pattern(regexp=".*[a-z].*"), 
     @Pattern(regexp=".*[A-Z].*"),
-    @Pattern(regexp=".*\\d.*"),   
-    @Pattern(regexp=".*(\\=|\\+|\\<|\\>|\\.|\\,).*")   
+    @Pattern(regexp="(.*\\d.*|(.*(\\=|\\+|\\<|\\>|\\.|\\,).*))"),   
 })
 @ReportAsSingleViolation
 @Constraint(validatedBy = {})

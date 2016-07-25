@@ -1,6 +1,6 @@
 package com.szilardolah.webshop.szilard.olah.beans;
 
-import com.szilardolah.webshop.szilard.olah.constraints.Util;
+import coma.szilardolah.webshop.szilard.olah.utils.Util;
 import com.szilardolah.webshop.szilard.olah.enums.Color;
 import com.szilardolah.webshop.szilard.olah.enums.Currency;
 import com.szilardolah.webshop.szilard.olah.enums.Manufacturer;
@@ -51,7 +51,65 @@ public class MobileTypeTest {
     public void optimalCase() {
         checkViolations(0, null);
     }
-       
+    
+    @Test
+    public void uuidHasIncorrectLength() {
+        String invalidUuid = "123";
+        mobileType.setId(invalidUuid);
+        checkViolations(1, invalidUuid);
+    }
+
+    @Test
+    public void uuidIsNull() {
+        mobileType.setId(null);
+        checkViolations(1, null);
+    }
+   
+    @Test
+    public void typeIsNull() {
+        mobileType.setType(null);
+        checkViolations(1, null);
+    }
+    
+    @Test
+    public void typeHasIncorrectLength() {
+        final String invalidType = "ww";  //min 3 characters  
+        mobileType.setType(invalidType);
+        checkViolations(1, invalidType);
+    }
+    
+    @Test
+    public void manufacturerIsNull() {
+        mobileType.setId(null);
+        checkViolations(1, null);       
+    }
+
+    @Test
+    public void priceIsNull() {
+        mobileType.setPrice(null);
+        checkViolations(1, null);
+    }
+
+    @Test
+    public void priceHasIncorrectLength() {
+        final Integer invalidPrice = 0;
+        mobileType.setPrice(invalidPrice);
+        checkViolations(1, invalidPrice);
+    }
+    
+    @Test
+    public void currencyIsNull() {
+        mobileType.setType(null);
+        checkViolations(1, null);
+    }
+    
+    @Test
+    public void colorIsNull() {
+        mobileType.setType(null);
+        checkViolations(1, null);
+    }
+    
+           
     @Test
     public void appleHasWhiteColor() {
         Color invalidColor = Color.WHITE;
@@ -69,62 +127,6 @@ public class MobileTypeTest {
     }
     
     @Test
-    public void uuidHasIncorrectLength() {
-        String invalidUuid = "123";
-        mobileType.setId(invalidUuid);
-        checkViolations(1, invalidUuid);
-    }
-
-    @Test
-    public void uuidIsNull() {
-        String invalidUuid = null;
-        mobileType.setId(null);
-        checkViolations(1, invalidUuid);
-    }
-
-    @Test
-    public void manufacturerIsNull() {
-        Manufacturer invalidManufacturer = null;
-        mobileType.setId(null);
-        checkViolations(1, invalidManufacturer);       
-    }
-
-    @Test
-    public void typeIsNull() {
-        String invalidType = null;  
-        mobileType.setType(null);
-        checkViolations(1, invalidType);
-    }
-
-    @Test
-    public void priceIsNull() {
-        String invalidPrice = null;  
-        mobileType.setPrice(null);
-        checkViolations(1, invalidPrice);
-    }
-
-    @Test
-    public void priceHasIncorrectLength() {
-        Integer invalidPrice = 0;
-        mobileType.setPrice(invalidPrice);
-        checkViolations(1, invalidPrice);
-    }
-    
-    @Test
-    public void currencyIsNull() {
-        Currency invalidCurrency = null;
-        mobileType.setType(null);
-        checkViolations(1, invalidCurrency);
-    }
-    
-    @Test
-    public void colorIsNull() {
-        Color invalidColor = null;
-        mobileType.setType(null);
-        checkViolations(1, invalidColor);
-    }
-    
-    @Test
     public void appleHasNotCorrectColor() {
         Color invalidColor = Color.GREEN;
         mobileType.setManufacturer(Manufacturer.APPLE);
@@ -133,7 +135,7 @@ public class MobileTypeTest {
     }
 
     @Test
-    public void samsungHasNotCorrectColor() {
+    public void samsungHasNotCorrectColor() {  // already tested its positive case (in optimalCase)
         Color invalidColor = Color.GREEN;
         mobileType.setManufacturer(Manufacturer.SAMSUNG);
         mobileType.setColor(invalidColor);       

@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
  * @author Szilard
  */
 public class UserDTOTest {
+    
     private static ValidatorFactory vf;
     private static Validator validator;
     private UserDTO userDTO;
@@ -36,9 +37,9 @@ public class UserDTOTest {
     
     @Before
     public void initUserDTO() {
-        userDTO = new UserDTO.Builder("silverwolf454", "blackjac123AAA..,", "samuel.ross@example.com")
+        userDTO = new UserDTO.Builder("silverwolf454", ".<blackjacK>.", "samuel.ross@example.com")
                 .setAddress("5655 Oregon, Santa Ana")
-                .setPhone("+36-102365478")
+                .setPhone("+36102365478")
                 .setFirstname("Samuel")
                 .setLastname("Ross")
                 .setSex(Sex.MALE)
@@ -47,76 +48,138 @@ public class UserDTOTest {
                 .build();
     }
 
-    @Test
     public void optimalCase() {
        checkViolations(0, null);
     }
-
+    
     @Test
     public void usernameIsNull() {
         userDTO.setUsername(null);
         checkViolations(1, null);
     }
-
+    
     @Test
     public void usernameHasIncorrectLength() {
-        String incorrectUsername = "yyy";
+        final String incorrectUsername = "yyy";  // less than 6 characters
         userDTO.setUsername(incorrectUsername);
         checkViolations(1, incorrectUsername);
     }
 
     @Test
-    public void addressIsIncorrect() {
-        String incorrectAddress = "yyy";
+    public void passwordIsNull() {  //negative
+        userDTO.setPassword(null); 
+        checkViolations(1, null);
+    }
+    
+    @Test
+    public void passwordHasIncorrectLength() { //negative
+        final String invalidPassword = "aa";  // less than 6 characters 
+        userDTO.setPassword(invalidPassword);
+        checkViolations(1, invalidPassword);
+    }
+    
+    @Test
+    public void passwordContainsLowerCaseCharactersOnly() { //negative
+        final String invalidPassword = "aaabbcc"; 
+        userDTO.setPassword(invalidPassword);
+        checkViolations(1, invalidPassword);
+    }
+    
+    @Test
+    public void passwordContainsUpperCaseCharactersOnly() { //negative
+        final String invalidPassword = "AABBCC"; 
+        userDTO.setPassword(invalidPassword);
+        checkViolations(1, invalidPassword);
+    }
+    
+    @Test
+    public void passwordContainsDigitsOnly() { //negative
+        final String invalidPassword = "123"; 
+        userDTO.setPassword(invalidPassword);
+        checkViolations(1, invalidPassword);
+    }
+ 
+    @Test
+    public void passwordContainsSpecialCharactersOnly() {  //negative
+        final String invalidPassword = "=+<>.,"; 
+        userDTO.setPassword(invalidPassword);
+        checkViolations(1, invalidPassword);
+    }
+    
+    @Test
+    public void passwordContainsLowerAndUpperCaseCharacters() { //negative
+        final String invalidPassword = "AABBCCxxxyyyzzz"; 
+        userDTO.setPassword(invalidPassword);
+        checkViolations(1, invalidPassword);
+    }
+    
+    @Test
+    public void passwordContainsLowerCaseAndUpperCaseCharactersAndDigits() { //positive
+        final String invalidPassword = "AABBCCxxxyyyzzz33"; 
+        userDTO.setPassword(invalidPassword);
+        checkViolations(0, invalidPassword);
+    }
+    
+    @Test
+    public void passwordContainsLowerCaseAndUpperCaseAndSpecialCharacters() { //positive
+        final String invalidPassword = "AABBCCxxxyyyzzz./="; 
+        userDTO.setPassword(invalidPassword);
+        checkViolations(0, invalidPassword);
+    }
+    
+    @Test
+    public void addressHasIncorrectSyntax() {
+        final String incorrectAddress = "yyyy kkk";
         userDTO.setAddress(incorrectAddress);
         checkViolations(1, incorrectAddress);
     }
-
+    
     @Test
-    public void phoneNumHasIncorrectSyntax() {
-        String incorrectPhone = "+90-4444";
+    public void phoneNumberHasIncorrectSyntax() {
+        final String incorrectPhone = "+90-4444";
         userDTO.setPhone(incorrectPhone);
         checkViolations(1, incorrectPhone);
     }
-
+    
     @Test
     public void emailIsNull() {
-        String incorrectEmail = null;
-        userDTO.setEmail(incorrectEmail);
-        checkViolations(1, incorrectEmail);
+        userDTO.setEmail(null);
+        checkViolations(1, null);
     }
-
+    
     @Test
     public void emailHasIncorrectSyntax() {
-        String incorrectEmail = "123@foo.2";
-        userDTO.setEmail(incorrectEmail);
-        checkViolations(1, incorrectEmail);
+        final String invalidEmail = "foo@example.h";
+        userDTO.setEmail(invalidEmail);
+        checkViolations(1, invalidEmail);
     }
-
+    
     @Test
     public void registrationDateIsIncorrect() {
-        Date incorrectRegDate = new Date(1506117600000l);
+        final Date incorrectRegDate = new Date(1506117600000l);
         userDTO.setRegistrationDate(incorrectRegDate);
         checkViolations(1, incorrectRegDate);
     }
     
     @Test
-    public void givenNameIsIncorrect() {
-        userDTO.setFirstname("Samuel");
-        userDTO.setLastname(null);
-        checkViolations(1, userDTO);
-        userDTO.setFirstname(null);
-        userDTO.setLastname("Ross");
+    public void givenBirthDateIsIncorrect() {
+        userDTO.setDateOfBirth(new Date(1506117600000l)); // 09/23/2017
         checkViolations(1, userDTO);
     }
     
     @Test
-    public void givenBirthDateIsIncorrect() {
-        userDTO.setDateOfBirth(null);
+    public void firstNameAddedOnly() {
+        userDTO.setFirstname("Samuel");
+        userDTO.setLastname(null);
         checkViolations(1, userDTO);
-        userDTO.setDateOfBirth(new Date(1506117600000l)); // 09/23/2017
+    }
+    
+    @Test
+    public void lastNameAddedOnly() {
+        userDTO.setFirstname(null);
+        userDTO.setLastname("Ross");
         checkViolations(1, userDTO);
-    }    
+    }
     
     
     private void checkViolation(Set<ConstraintViolation<UserDTO>> violations, Object invalidObejct) {

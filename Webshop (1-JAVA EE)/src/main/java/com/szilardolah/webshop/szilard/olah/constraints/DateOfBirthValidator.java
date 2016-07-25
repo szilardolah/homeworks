@@ -17,16 +17,14 @@ public class DateOfBirthValidator implements ConstraintValidator<DateOfBirth, Us
     }
 
     @Override
-    public boolean isValid(UserDTO t, ConstraintValidatorContext cvc) {
-        if (t == null) {
-            return false;
-        }
-        if (t.getDateOfBirth() == null || t.getRegistrationDate() == null) {
-            return false;
-        }
+    public boolean isValid(UserDTO userDTO, ConstraintValidatorContext cvc) {
+        if (userDTO == null || userDTO.getRegistrationDate() == null || userDTO.getDateOfBirth() == null) {
+            return true;
+        }  
         
-        return Util.timeInMillis(t.getDateOfBirth()) < Util.timeInMillis(t.getRegistrationDate()) &&
-                Util.differenceInYear(t.getDateOfBirth()) >= 18;
-    }
-
+        long dateOfBirthInMillis = userDTO.getDateOfBirth().getTime();
+        long registrationDateInMillis = userDTO.getRegistrationDate().getTime();
+        
+        return  dateOfBirthInMillis < registrationDateInMillis;
+    }    
 }

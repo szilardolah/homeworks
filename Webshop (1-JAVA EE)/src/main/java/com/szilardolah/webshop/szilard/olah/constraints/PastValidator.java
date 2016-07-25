@@ -16,11 +16,11 @@ public class PastValidator implements ConstraintValidator<Past, Date> {
     }
 
     @Override
-    public boolean isValid(Date d, ConstraintValidatorContext cvc) {
-        if (d == null) {
+    public boolean isValid(Date date, ConstraintValidatorContext cvc) {
+        if (date == null) {
             return false;
         }      
-        return Util.timeInMillis(d) < Util.systemTimeInMillis();
+        return date.getTime() < new Date().getTime();
     }
 
 }

@@ -2,15 +2,17 @@ package com.szilardolah.webshop.szilard.olah.databases;
 
 import com.szilardolah.webshop.szilard.olah.beans.UserDTO;
 import com.szilardolah.webshop.szilard.olah.enums.Sex;
+import com.szilardolah.webshop.szilard.olah.exceptions.UserAlreadyExistsException;
 import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.*; 
 
 /**
  *
  * @author Szilard
  */
+import com.szilardolah.webshop.szilard.olah.exceptions.UnknownUserException;
 public class UserDBTest {
     
     private UserDTO userDTO;
@@ -30,57 +32,44 @@ public class UserDBTest {
                 .build();
     }
 
-    @Test
-    public void testRegistrate() {
+   @Test
+    public void registrate() {
         userDB.registrate(userDTO);
-        assertEquals(1, userDB.members());
+        assertTrue(userDB.authenticate(userDTO.getUsername(), userDTO.getPassword()));
     }
     
-    @Test
-    public void usernameAndPasswordAlreadyExists() {
+    @Test (expected = UserAlreadyExistsException.class)
+    public void registrateExceptedException() {
         userDB.registrate(userDTO);
         userDB.registrate(userDTO);
-        assertEquals(1, userDB.members());
     }
 
     @Test
-    public void testGetUser() {
+    public void getUser() {
         userDB.registrate(userDTO);
         assertEquals(userDTO, userDB.getUser(userDTO.getUsername()));
     }
     
-    @Test
-    public void testGetUserReturnNull() {
+    @Test (expected = UnknownUserException.class)
+    public void getUserExceptedException() {
         assertEquals(null, userDB.getUser(userDTO.getUsername()));
     }
 
     @Test
-    public void testAuthenticate() {
+    public void authenticate() {
         String username = "www";
         String password = "zzz";
         userDTO.setUsername(username);
         userDTO.setPassword(password);
         userDB.registrate(userDTO);
-        assertEquals(true, userDB.authenticate(username, password));
+        assertTrue(userDB.authenticate(username, password));
     }
     
     @Test
-    public void testAuthenticateReturnFalse() {
+    public void authenticateReturnFalse() {
         String username = "xxx";
         String password = "yyy";
         userDB.registrate(userDTO);
-        assertEquals(false, userDB.authenticate(username, password));
+        assertFalse(userDB.authenticate(username, password));
     }
-
-    @Test
-    public void testHasUser() {
-        userDB.registrate(userDTO);
-        assertEquals(true, userDB.hasUser(userDTO.getUsername())); 
-    }
-    
-        @Test
-    public void testHasUserReturnFalse() {
-        assertEquals(false, userDB.hasUser(userDTO.getUsername())); 
-    }
-    
 }

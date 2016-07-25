@@ -4,6 +4,8 @@ import com.szilardolah.webshop.szilard.olah.beans.MobileType;
 import com.szilardolah.webshop.szilard.olah.enums.Color;
 import com.szilardolah.webshop.szilard.olah.enums.Currency;
 import com.szilardolah.webshop.szilard.olah.enums.Manufacturer;
+import com.szilardolah.webshop.szilard.olah.exceptions.MobileTypeAlreadyExistsException;
+import com.szilardolah.webshop.szilard.olah.exceptions.UnknownMobileTypeException;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -29,62 +31,45 @@ public class MobileInventoryTest {
     }
 
     @Test
-    public void testAddNewMobileType() {      
-        inventory.addNewMobileType(mobileType);
-        assertEquals(true, mobileType.getId().matches("^.+"));
-        assertEquals(0, inventory.getQuantity(mobileType));
+    public void addNewMobileType() {      
+        mobileType = inventory.addNewMobileType(mobileType);
+        assertTrue(mobileType.getId().matches("^.+"));
+        assertTrue(inventory.returnMobile(mobileType, 10));
     }
-    
-    
-    @Test
-    public void MobileTypeAlreadyAdded() {      
-        inventory.addNewMobileType(mobileType);        
-        assertEquals(null, inventory.addNewMobileType(mobileType));
-        assertEquals(1, inventory.numOfMubileType());
-    }
-    
-
-    @Test
-    public void testReserveMobile() {
+       
+    @Test (expected = MobileTypeAlreadyExistsException.class)
+    public void addNewMobileTypeExceptedException() {      
+         inventory.addNewMobileType(mobileType);        
         inventory.addNewMobileType(mobileType);
-        assertEquals(true, inventory.increaseQuantity(mobileType, 20));
-        assertEquals(true, inventory.reserveMobile(mobileType, 10));
-        assertEquals(10, inventory.getQuantity(mobileType));
     }
     
     @Test
-    public void testReserveMobileReturnFalse() {
+    public void reserveMobile() {
         inventory.addNewMobileType(mobileType);
-        assertEquals(true, inventory.increaseQuantity(mobileType, 10));
-        assertEquals(false, inventory.reserveMobile(mobileType, 20));
-        assertEquals(10, inventory.getQuantity(mobileType));
+        inventory.returnMobile(mobileType, 20);
+        assertTrue(inventory.reserveMobile(mobileType, 10));
+    }
+    
+    @Test
+    public void reserveMobileReturnFalse() {
+        inventory.addNewMobileType(mobileType);
+        inventory.returnMobile(mobileType, 10);
+        assertFalse(inventory.reserveMobile(mobileType, 20));
+    }
+    
+    @Test (expected = UnknownMobileTypeException.class)
+    public void reserveMobileExceptedException() {
+        inventory.returnMobile(mobileType, 10);
     }
 
     @Test
     public void testReturnMobile() {  
-        inventory.addNewMobileType(mobileType);
-        assertEquals(true, inventory.returnMobile(mobileType, 20));
-        assertEquals(20, inventory.getQuantity(mobileType));
+         inventory.addNewMobileType(mobileType);
+        assertTrue(inventory.returnMobile(mobileType, 20));
     }
-    
-    @Test
-    public void testReturnMobileReturnFalse() {  
-        inventory.addNewMobileType(mobileType);
-        mobileType.setColor(Color.BLUE);
-        assertEquals(false, inventory.returnMobile(mobileType, 20));
+
+    @Test (expected = UnknownMobileTypeException.class)
+    public void testReturnMobileExceptedException() {  
+        inventory.returnMobile(mobileType, 20);
     }
-    
-    @Test
-    public void testHasMobileType() {  
-        inventory.addNewMobileType(mobileType);
-        assertEquals(true, inventory.hasMobileType(mobileType.getType(), 
-                mobileType.getManufacturer(), mobileType.getColor()));
-    }
-   
-    @Test
-    public void testHasMobileTypeReturnFalse() {  
-        inventory.addNewMobileType(mobileType);
-        assertEquals(false, inventory.hasMobileType(mobileType.getType(), 
-                mobileType.getManufacturer(), Color.BLUE));
-    }   
 }

@@ -11,6 +11,8 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import com.szilardolah.webshop.szilard.olah.constraints.Password;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -22,6 +24,7 @@ import java.util.Objects;
 public class UserDTO {    
     @NotNull @Size(min = 6)
     private String username;
+    
     @NotNull @Password
     private String password;
     
@@ -32,7 +35,7 @@ public class UserDTO {
     @Pattern( regexp = "^\\d{4}.*" )
     private String address;
     
-    @Pattern (regexp = "^\\+(36|06)-\\d{9}")
+    @Pattern (regexp = "^\\+(36|06)\\d{9}")
     private String phone;
     
     @NotNull @Pattern (regexp = ".*@.*\\..{2,3}") 
@@ -47,6 +50,7 @@ public class UserDTO {
     
     private boolean admin;
 
+    
     public UserDTO() {
         //Default constructor for ObjectMapper
     }
@@ -60,7 +64,7 @@ public class UserDTO {
         this.phone = builder.phone;
         this.email = builder.email;
         this.sex = builder.sex;
-        this.registrationDate = builder.registrationDate;
+        setRegistrationDate(builder.registrationDate);
         this.dateOfBirth = builder.dateOfBirth;
         this.admin = builder.admin;
     }            
@@ -134,7 +138,12 @@ public class UserDTO {
     }
 
     public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+        this.registrationDate = (registrationDate!=null) ? registrationDate : new Date();
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(UserDTO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public Date getDateOfBirth() {

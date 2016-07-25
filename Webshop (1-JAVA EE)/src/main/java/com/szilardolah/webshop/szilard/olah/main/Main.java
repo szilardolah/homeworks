@@ -24,8 +24,7 @@ public class Main {
         objMapper = new ObjectMapper();
     }
      
-    public MobileInventory setMobileInventory(String filename) {
-        try {
+    public MobileInventory setMobileInventory(String filename) throws IOException {
             MobileType[] mobileTypes = readMobileTypesFromJson(filename);
             
             MobileInventory inventory = new MobileInventory();
@@ -33,10 +32,7 @@ public class Main {
                 inventory.addNewMobileType(m);
             }
             return inventory;
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        return null;
+        
     }
     
     private MobileType[] readMobileTypesFromJson(String filename) throws IOException {
@@ -45,18 +41,13 @@ public class Main {
                     MobileType[].class);
     }
     
-    public UserDB setUserDB(String filename) {
-        try {
+    public UserDB setUserDB(String filename) throws IOException {
             UserDTO[] userDTOs = readUserDTOsFromJson(filename);
             UserDB userDB = new UserDB();
             for(UserDTO u : userDTOs) {
                 userDB.registrate(u);
             }
             return userDB;
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        return null;
     }
    
     private UserDTO[] readUserDTOsFromJson(String filename) throws IOException {
@@ -65,11 +56,13 @@ public class Main {
                     UserDTO[].class); 
     } 
     
-    public static void main(String[] args) throws IOException {        
+    public static void main(String[] args) {        
         Main m = new Main();
-        MobileInventory inventory = m.setMobileInventory("mobiletypes.json");
-        UserDB userDB = m.setUserDB("users.json");
-        LOGGER.log(Level.INFO, "Number of known phones: {0}", inventory.knownMobiles());
-        LOGGER.log(Level.INFO, "Registered users: {0}", userDB.members());
+        try {
+            m.setMobileInventory("mobiletypes.json");   // return: MobileInventory instance
+            m.setUserDB("users.json");                  // return: UserDB instance
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, null, ex);
+        }
     }
 }

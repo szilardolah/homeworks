@@ -19,10 +19,10 @@ public class MobileColorValidator implements ConstraintValidator<MobileColor, Mo
     }
 
     @Override
-    public boolean isValid(MobileType t, ConstraintValidatorContext cvc) {
-        Color mobileColor = t.getColor();
+    public boolean isValid(MobileType mobileType, ConstraintValidatorContext cvc) {
+        Color mobileColor = mobileType.getColor();
         
-        switch (t.getManufacturer()) {
+        switch (mobileType.getManufacturer()) {
             case APPLE:
                 if (mobileColor != WHITE  &&  mobileColor != BLACK)
                     return false;
