@@ -7,3 +7,5 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+/Webshop (2-JAVA EE)/nbproject/
+/Webshop (2.1-JAVA EE)/nbproject/

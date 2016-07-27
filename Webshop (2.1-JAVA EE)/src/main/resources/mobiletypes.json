@@ -1,0 +1,90 @@
+[
+		{
+			"id" : "",
+			"type" : "GG6",
+			"manufacturer": "HUAWEI",
+			"price": "50334",
+			"currency": "HUF",
+			"color": "BLACK"
+		},
+		{
+			"id" : "",
+			"type" : "iPhone 5S",
+			"manufacturer": "APPLE",
+			"price": "99490",
+			"currency": "HUF",
+			"color": "WHITE"
+		},
+		{
+			"id" : "",
+			"type" : "P8 Lite",
+			"manufacturer": "HUAWEI",
+			"price": "64900",
+			"currency": "HUF",
+			"color": "BLACK"
+		},
+		{
+			"id" : "",
+			"type" : "iPhone SE",
+			"manufacturer": "APPLE",
+			"price": "133999",
+			"currency": "HUF",
+			"color": "WHITE"
+		},
+		{
+			"id" : "",
+			"type" : "Lumia 520",
+			"manufacturer": "HTC",
+			"price": "50334",
+			"currency": "HUF",
+			"color": "BLACK"
+		},
+		{
+			"id" : "",
+			"type" : "Galaxy S7 edge",
+			"manufacturer": "SAMSUNG",
+			"price": "185500",
+			"currency": "HUF",
+			"color": "WHITE"
+		},
+		{
+			"id" : "",
+			"type" : "p9 lite",
+			"manufacturer": "HUAWEI",
+			"price": "79490",
+			"currency": "HUF",
+			"color": "WHITE"
+		},
+		{
+			"id" : "",
+			"type" : "GG4",
+			"manufacturer": "ONEPLUS",
+			"price": "94500",
+			"currency": "HUF",
+			"color": "BLACK"
+		},
+				{
+			"id" : "",
+			"type" : "iPhone 6S",
+			"manufacturer": "APPLE",
+			"price": "178750",
+			"currency": "HUF",
+			"color": "BLACK"
+		},
+				{
+			"id" : "",
+			"type" : "Galaxy A3",
+			"manufacturer": "SAMSUNG",
+			"price": "66900",
+			"currency": "HUF",
+			"color": "BLACK"
+		},
+				{
+			"id" : "",
+			"type" : "KK8",
+			"manufacturer": "ONEPLUS",
+			"price": "37990",
+			"currency": "HUF",
+			"color": "WHITE"
+		}		
+]
