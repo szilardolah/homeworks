@@ -24,12 +24,14 @@ public class MobileColorValidator implements ConstraintValidator<MobileColor, Mo
         
         switch (mobileType.getManufacturer()) {
             case APPLE:
-                if (mobileColor != WHITE  &&  mobileColor != BLACK)
+                if (mobileColor != WHITE  &&  mobileColor != BLACK) {
                     return false;
+                }
                 break;
             case SAMSUNG:
-                if (mobileColor == GREEN)
+                if (mobileColor == GREEN) {
                     return false;
+                }
                 break;
             default:
                 return true;

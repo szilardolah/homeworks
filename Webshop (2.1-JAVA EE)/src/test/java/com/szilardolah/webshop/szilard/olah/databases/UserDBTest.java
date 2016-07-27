@@ -2,7 +2,6 @@ package com.szilardolah.webshop.szilard.olah.databases;
 
 import com.szilardolah.webshop.database.UserDB;
 import com.szilardolah.webshop.bean.UserDTO;
-import com.szilardolah.webshop.database.Instance;
 import com.szilardolah.webshop.enums.Sex;
 import com.szilardolah.webshop.exception.UserAlreadyExistsException;
 import com.szilardolah.webshop.exception.UnknownUserException;
@@ -22,7 +21,7 @@ public class UserDBTest {
     
     @Before
     public void init() {
-        userDB = UserDB.getInstance(Instance.NEW);
+        userDB = new UserDB(); 
         userDTO = new UserDTO.Builder("silverwolf454", "blackjac123AAA..,", "samuel.ross@example.com")
                 .setAddress("5655 Oregon, Santa Ana")
                 .setPhone("+36-102365478")

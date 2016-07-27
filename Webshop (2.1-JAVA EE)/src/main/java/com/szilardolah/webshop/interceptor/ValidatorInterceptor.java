@@ -1,6 +1,7 @@
 package com.szilardolah.webshop.interceptor;
 
 import com.szilardolah.webshop.annotation.WebshopBean;
+import com.szilardolah.webshop.qualifier.ValidatorQualifier;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,20 +21,20 @@ import javax.validation.Validator;
 @Validation
 public class ValidatorInterceptor {
 
-    @Inject
+    @Inject @ValidatorQualifier
     private Validator validator;
     
  
     @AroundInvoke
     public Object logMethod(InvocationContext ic) {
-        Object object = null;
+        checkWebshopBeanAnnotation(ic.getParameters());
+        Object obj = null;
         try {
-            object = ic.proceed();
+            obj = ic.proceed();
         } catch (Exception ex) {
             Logger.getLogger(ValidatorInterceptor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        checkWebshopBeanAnnotation(ic.getParameters());
-        return object;
+        return obj;
     }
     
     public Object[] checkWebshopBeanAnnotation(Object[] params) {
@@ -48,7 +49,7 @@ public class ValidatorInterceptor {
     
     public void validateBean(Object object) {
         Set<ConstraintViolation<Object>> violations = validator.validate(object);
-        if (violations != null) {
+        if (violations.isEmpty()) {
             while (violations.iterator().hasNext()) {
                 ConstraintViolation<Object> violation = violations.iterator().next();
                 throw new ValidationException(

@@ -2,7 +2,6 @@ package com.szilardolah.webshop.szilard.olah.databases;
 
 import com.szilardolah.webshop.database.MobileInventory;
 import com.szilardolah.webshop.bean.MobileType;
-import com.szilardolah.webshop.database.Instance;
 import com.szilardolah.webshop.enums.Color;
 import com.szilardolah.webshop.enums.Currency;
 import com.szilardolah.webshop.enums.Manufacturer;
@@ -23,7 +22,7 @@ public class MobileInventoryTest {
     
     @Before
     public void init() {
-        inventory = MobileInventory.getInstance(Instance.NEW);
+        inventory = new MobileInventory();
         mobileType = new MobileType(
                 "Galaxy s4",
                 Manufacturer.SAMSUNG,

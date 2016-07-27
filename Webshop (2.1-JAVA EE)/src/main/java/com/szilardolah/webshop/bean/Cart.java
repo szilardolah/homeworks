@@ -1,6 +1,5 @@
 package com.szilardolah.webshop.bean;
 
-import com.szilardolah.webshop.database.Instance;
 import com.szilardolah.webshop.database.MobileInventory;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,15 +12,21 @@ import java.util.logging.Logger;
  */
 public class Cart {
     
-    private final Map<MobileType, Integer> myCart;
+    public final Map<MobileType, Integer> myCart;
     
-    private static final Logger LOGGER = Logger.getLogger(MobileInventory.class.getSimpleName());
+    private static final Logger LOGGER = Logger.getLogger(Cart.class.getSimpleName());
  
-    private MobileInventory inventory;
+    private final MobileInventory inventory;
+    
     
     public Cart() {
         myCart = new HashMap<>();
-        inventory = MobileInventory.getInstance(Instance.EXISTING);
+        inventory = new MobileInventory();
+    }
+    
+    public Cart(MobileInventory mobileInventory) {
+        this.myCart = new HashMap<>();
+        this.inventory = mobileInventory;
     }
     
     public boolean addPhone(MobileType mobile, int quantity) {
