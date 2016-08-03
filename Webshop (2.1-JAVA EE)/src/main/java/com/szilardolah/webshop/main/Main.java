@@ -75,7 +75,7 @@ public class Main {
         setUserDB("users.json");   
     }
     
-    private void checkCart() {
+    private void checkCart() throws Exception {
         MobileType mobileOne = new MobileType("Galaxy s100",
                 Manufacturer.SAMSUNG, 70000, Currency.HUF, Color.WHITE);
         MobileType mobileTwo = new MobileType("Galaxy s3",
@@ -89,12 +89,25 @@ public class Main {
         
         Cart cart= new Cart(inventory);
         cart.addPhone(mobileOne, 10);
+        cart.addPhone(mobileTwo, 5);
+        cart.clear();
+        
+        cart.addPhone(mobileOne, 10);
         cart.addPhone(mobileOne, 5);
         cart.addPhone(mobileTwo, 5);
+        if (cart.getTotalAmount() != 1200000) {
+            throw new Exception(cart.getTotalAmount() +".........");
+        }
+        cart.deletePhone(mobileTwo, 2);
+        cart.deletePhone(mobileTwo, 111);
+        if (cart.getTotalAmount() != 1140000) {
+            throw new Exception(cart.getTotalAmount() +".........");
+        }
+        
         cart.orderCart();
     }
     
-    public static void main(String[] args) { 
+    public static void main(String[] args) throws Exception { 
         Weld weld = new Weld();
         WeldContainer container = weld.initialize();
                 

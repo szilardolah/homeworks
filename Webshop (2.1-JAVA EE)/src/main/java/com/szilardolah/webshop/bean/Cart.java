@@ -12,10 +12,10 @@ import java.util.logging.Logger;
  */
 public class Cart {
     
-    public final Map<MobileType, Integer> myCart;
-    
     private static final Logger LOGGER = Logger.getLogger(Cart.class.getSimpleName());
- 
+    
+    public final Map<MobileType, Integer> myCart;
+     
     private final MobileInventory inventory;
     
     
@@ -42,8 +42,8 @@ public class Cart {
     }
     
     public boolean deletePhone(MobileType mobile, int quantity) {
-        if(inventory.returnMobile(mobile, quantity)){
-            myCart.replace(mobile, quantity);
+        if(myCart.get(mobile) >= quantity && inventory.returnMobile(mobile, quantity)){
+            myCart.replace(mobile, myCart.get(mobile) - quantity);
             if (myCart.get(mobile) == 0) {
                 myCart.remove(mobile);
             }

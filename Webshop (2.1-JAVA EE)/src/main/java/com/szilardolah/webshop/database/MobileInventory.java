@@ -26,7 +26,7 @@ public class MobileInventory {
     }
     
     public MobileType addNewMobileType(MobileType mobileType) {
-       if (!hasMobileType(mobileType.getId())) {
+       if (!hasMobileType(mobileType)) {
             mobileType.setId(Util.generateUuidInString());
             mobiles.put(mobileType, 0);
             LOGGER.log(Level.INFO, "Added mobile. UUID: {0} type: {1} manufact.:{2}",
@@ -39,7 +39,7 @@ public class MobileInventory {
     }
     
     public boolean reserveMobile(MobileType mobileType, int quantity) {
-        if (!hasMobileType(mobileType.getId())) {
+        if (!hasMobileType(mobileType)) {
             throw new UnknownMobileTypeException(
                         mobileType.getType() + " is unknown! First, add to the MobileInventory.");
         }
@@ -53,15 +53,15 @@ public class MobileInventory {
     }
     
     public boolean returnMobile(MobileType mobileType, int quantity) {
-        if (!hasMobileType(mobileType.getId())) {
+        if (!hasMobileType(mobileType)) {
             throw new UnknownMobileTypeException(
                         mobileType.getType() + " is unknown! First, add to the MobileInventory.");
         }
         return increaseQuantity(mobileType, quantity);
     }
     
-    private boolean hasMobileType(String uuid) {
-        return mobiles.entrySet().stream().anyMatch(mobile -> mobile.getKey().getId().equals(uuid));
+    private boolean hasMobileType(MobileType mobileType) {
+        return mobiles.containsKey(mobileType);
     }
     
     private boolean hasEnoughQuantity(MobileType mobileType, int quantity) {

@@ -3,8 +3,6 @@ package com.szilardolah.webshop.interceptor;
 import com.szilardolah.webshop.annotation.WebshopBean;
 import com.szilardolah.webshop.qualifier.ValidatorQualifier;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
@@ -26,15 +24,9 @@ public class ValidatorInterceptor {
     
  
     @AroundInvoke
-    public Object logMethod(InvocationContext ic) {
+    public Object logMethod(InvocationContext ic) throws Exception {
         checkWebshopBeanAnnotation(ic.getParameters());
-        Object obj = null;
-        try {
-            obj = ic.proceed();
-        } catch (Exception ex) {
-            Logger.getLogger(ValidatorInterceptor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return obj;
+        return ic.proceed();
     }
     
     public Object[] checkWebshopBeanAnnotation(Object[] params) {

@@ -112,9 +112,6 @@ public class MobileType {
     public int hashCode() {
         int hash = 7;
         hash = 73 * hash + Objects.hashCode(this.id);
-        hash = 73 * hash + Objects.hashCode(this.type);
-        hash = 73 * hash + Objects.hashCode(this.manufacturer);
-        hash = 73 * hash + Objects.hashCode(this.color);
         return hash;
     }
 
@@ -130,17 +127,10 @@ public class MobileType {
             return false;
         }
         final MobileType other = (MobileType) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.type, other.type)) {
-            return false;
-        }
-        if (this.manufacturer != other.manufacturer) {
-            return false;
-        }
-        return this.color == other.color;
-    } 
+        return Objects.equals(this.id, other.id);
+    }
+
+    
     
     
     
