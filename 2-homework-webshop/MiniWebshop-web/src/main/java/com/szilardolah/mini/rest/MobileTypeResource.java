@@ -37,7 +37,6 @@ public class MobileTypeResource implements Serializable{
     private MobileInventory inventory;
     
     @POST
-    @Path("add")
     public MobileType add(@Context HttpServletRequest request, MobileType mobileType) {
         Object userObj = request.getSession().getAttribute(Attribute.USER_DEF_KEY);
         if (userObj != null && userObj instanceof UserDTO) {
@@ -50,7 +49,7 @@ public class MobileTypeResource implements Serializable{
     }
     
     @DELETE
-    @Path("delete/{name}")
+    @Path("{name}")
     public MobileType delete(@Context HttpServletRequest request, @PathParam("name") String mobileType){
         Object userObj = request.getSession().getAttribute(Attribute.USER_DEF_KEY);
         if (userObj != null && userObj instanceof UserDTO) {

@@ -1,7 +1,6 @@
 package com.szilardolah.mini.rest;
 
 import com.szilardolah.mini.bean.Cart;
-import com.szilardolah.mini.bean.MobileType;
 import com.szilardolah.mini.bean.UserDTO;
 import com.szilardolah.mini.database.MobileInventory;
 import com.szilardolah.mini.exception.LoginException;
@@ -15,6 +14,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -26,7 +26,6 @@ import javax.ws.rs.core.Response;
  */
 @Path("cart")
 @SessionScoped
-@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class CartResource implements Serializable{
 
@@ -37,21 +36,21 @@ public class CartResource implements Serializable{
     private MobileInventory inventory;
     
     @POST
-    @Path("add")
-    public boolean add(@Context HttpServletRequest request, MobileType mobileType) {
+    @Path("mobiletype")
+    public boolean add(@Context HttpServletRequest request, @PathParam("mobiletype") String mobileType) {
         Object userObject = request.getSession().getAttribute(Attribute.USER_DEF_KEY);
         if (userObject != null && userObject instanceof UserDTO) {
-            return cart.addPhone(mobileType, 1);
+            return cart.addPhone(inventory.findMobile(mobileType), 1);
         }
         throw new LoginException(YOU_ARE_NOT_LOGGED_IN);
     }
     
     @DELETE
-    @Path("delete/{mobiletype}")
-    public boolean delete(@Context HttpServletRequest request, MobileType mobileType) {
+    @Path("mobiletype")
+    public boolean delete(@Context HttpServletRequest request, @PathParam("mobiletype") String mobileType) {
         Object userObject = request.getSession().getAttribute(Attribute.USER_DEF_KEY);
         if (userObject != null && userObject instanceof UserDTO) {
-            return cart.deletePhone(mobileType, 1);
+            return cart.deletePhone(inventory.findMobile(mobileType), 1);
         }
         throw new LoginException(YOU_ARE_NOT_LOGGED_IN);
     }

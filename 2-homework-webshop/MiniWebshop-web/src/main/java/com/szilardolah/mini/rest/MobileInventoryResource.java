@@ -35,8 +35,8 @@ public class MobileInventoryResource implements Serializable{
     
     @GET
     @Path("{mobile}")
-    public Integer getQuantity(@PathParam("mobile") String mobileName) {
-        return inventory.getQuantity( inventory.findMobile(mobileName) );
+    public String getQuantity(@PathParam("mobile") String mobileName) {
+        return inventory.getQuantity(inventory.findMobile(mobileName)).toString();
     }
     
     @PUT

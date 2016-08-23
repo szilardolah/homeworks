@@ -37,7 +37,6 @@ public class UserResource implements Serializable {
     
     
     @POST
-    @Path("add")
     public UserDTO add(@Context HttpServletRequest request, UserDTO user) {
         Object userObj = request.getSession().getAttribute(Attribute.USER_DEF_KEY);
         if (userObj != null && userObj instanceof UserDTO) {
@@ -50,7 +49,7 @@ public class UserResource implements Serializable {
     }
    
     @DELETE
-    @Path("delete/{username}")
+    @Path("{username}")
     public UserDTO deleteUser(@Context HttpServletRequest request, @PathParam("username") String username) {
         Object userObj = request.getSession().getAttribute(Attribute.USER_DEF_KEY);
         if (userObj != null && userObj instanceof UserDTO) {

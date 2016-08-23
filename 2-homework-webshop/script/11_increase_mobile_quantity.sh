@@ -1,0 +1,1 @@
+curl --verbose --write-out '\n' --cookie cart-cookie.txt --cookie-jar cart-cookie.txt --request PUT 'http://localhost:8080/MiniWebshop-web-1.0-SNAPSHOT/rest/mobile/quantity/GG6/increase/50'
