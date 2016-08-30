@@ -1,1 +1,0 @@
-curl --verbose --write-out '\n' --cookie cart-cookie.txt --cookie-jar cart-cookie.txt --request GET 'http://localhost:8080/MiniWebshop-web-1.0-SNAPSHOT/rest/mobile/c1c8832f-fd00-4c8b-a8e4-3273287734fe'
