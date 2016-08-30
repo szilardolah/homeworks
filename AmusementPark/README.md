@@ -91,15 +91,17 @@ Example JSON:
 | POST  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/guest/{guest_id}        | true  |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/guest/{guest_id}| --- |
 ### Add a guest to a machine in a park 
-Firstly, You have to `open` the selected machine, 
+Firstly, You have to open the selected machine, 
+
 | HTTP  | URL | JSON required|
 |---	|---	| ---|
 | PUT  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/open/{machine_id} | ---  |
 | PUT  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/close/{machine_id} | ---  |
+
 After that, you can add the guest to the machine.
 | HTTP  | URL | JSON required|
 |---	|---	| ---|
-| POST  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}/guest/{guest_id}       | true  |
+| POST  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}/guest/{guest_id}| true  |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}/guest/{guest_id}| --- |
 ### Write a note to a park’s guestbook
 When you create a park, then it's _guestbook entity_ automatically creates.
