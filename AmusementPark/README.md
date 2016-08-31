@@ -24,7 +24,7 @@
 Example JSON:
 ```json
 {
-	"name" : "RollerCoaster",
+	"name" : "National",
 	"address" : {
 		"postalCode" : "H-8200",
 		"country" : "Hungary",
@@ -39,7 +39,7 @@ Example JSON:
 ```
 | HTTP  | URL | JSON required|
 |---	|---	| ---|
-| POST  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/         | true  |
+| **POST**  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/         | true  |
 | PUT   | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}| true  |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}| --- |
 |GET	| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}| --- |
@@ -48,7 +48,7 @@ Example JSON:
 Example JSON:
 ```json
 {
-	"alias" : "heaven",
+	"alias" : "alias_name",
 	"size" : 300,
 	"ticketPrice" : 800,
 	"machinePrice" : 500000,
@@ -59,7 +59,7 @@ Example JSON:
 ```
 | HTTP  | URL | JSON required|
 |---	|---	| ---|
-| POST  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/machine/        | true  |
+| **POST**  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/machine/        | true  |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/machine/{machine_id}| --- |
 |GET	| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/machine/{machine_id}| --- |
 |GET    | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/machine/      | --- |
@@ -83,26 +83,26 @@ Example JSON:
 ### Add a machine to a park
 | HTTP  | URL | JSON required|
 |---	|---	| ---|
-| POST  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}        | true |
+| **POST**  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}        | true |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}| --- |
 ### Add a guest to a park
 | HTTP  | URL | JSON required|
 |---	|---	| ---|
-| POST  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/guest/{guest_id}        | true  |
+| **POST**  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/guest/{guest_id}        | true  |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/guest/{guest_id}| --- |
 ### Add a guest to a machine in a park 
 Firstly, You have to `open` the selected machine, 
 
 | HTTP  | URL | JSON required|
 |---	|---	| ---|
-| PUT  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/open/{machine_id} | ---  |
+| **PUT**  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/open/{machine_id} | ---  |
 | PUT  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/close/{machine_id} | ---  |
 
 After that, you can add the guest to the machine.
 
 | HTTP  | URL | JSON required|
 |---	|---	| ---|
-| POST  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}/guest/{guest_id}| true  |
+| **POST**  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}/guest/{guest_id}| true  |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}/guest/{guest_id}| --- |
 ### Write a note to a park’s guestbook
 When you create a park, then it's _guestbook entity_ automatically creates.
@@ -113,6 +113,12 @@ When you create a park, then it's _guestbook entity_ automatically creates.
 ```
 | HTTP  | URL | JSON required|
 |---	|---	| ---|
-| POST  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/book/{park_id}/{guest_id}   | true  |
+| **POST**  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/book/{park_id}/{guest_id}   | true  |
 | GET | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/book/{park_id}/{guest_id}| --- |
 | GET | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/book}| --- |
+
+# _**Queries**_
+| Get guests by state (REST) | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/rest |
+| Get guests of a machine | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id} |
+| Get notes by guest id | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/book/note/{park_id}/{guest_id}|
+| Get parks with nonzero fund | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/nonzero|
