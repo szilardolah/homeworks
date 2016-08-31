@@ -37,7 +37,7 @@ Example JSON:
 	"ticketPrice" : 1500
 } 
 ```
-| HTTP  | URL | JSON required|
+| HTTP  |  | JSON required|
 |---	|---	| ---|
 | **POST**  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/         | true  |
 | PUT   | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}| true  |
@@ -57,7 +57,7 @@ Example JSON:
 	"minAge" : 14
 }
 ```
-| HTTP  | URL | JSON required|
+| HTTP  |  | JSON required|
 |---	|---	| ---|
 | **POST**  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/machine/        | true  |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/machine/{machine_id}| --- |
@@ -72,35 +72,35 @@ Example JSON:
     "age" : 18
 }
 ```
-| HTTP  | URL | JSON required|
+| HTTP  |  | JSON required|
 |---	|---	| ---|
-| POST  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/guest/        | true  |
+| **POST**  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/guest/        | true  |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/guest/{guest_id}| --- |
 |GET	| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/guest/{guest_id}| --- |
 |GET    | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/guest/      | --- |
 
 # _**Next steps**_
 ### Add a machine to a park
-| HTTP  | URL | JSON required|
+| HTTP  |  | JSON required|
 |---	|---	| ---|
 | **POST**  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}        | true |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}| --- |
 ### Add a guest to a park
-| HTTP  | URL | JSON required|
+| HTTP  |  | JSON required|
 |---	|---	| ---|
 | **POST**  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/guest/{guest_id}        | true  |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/guest/{guest_id}| --- |
 ### Add a guest to a machine in a park 
 Firstly, You have to `open` the selected machine, 
 
-| HTTP  | URL | JSON required|
+| HTTP  |  | JSON required|
 |---	|---	| ---|
 | **PUT**  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/open/{machine_id} | ---  |
 | PUT  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/close/{machine_id} | ---  |
 
 After that, you can add the guest to the machine.
 
-| HTTP  | URL | JSON required|
+| HTTP  |  | JSON required|
 |---	|---	| ---|
 | **POST**  |  http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}/guest/{guest_id}| true  |
 | DELETE| http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id}/guest/{guest_id}| --- |
@@ -111,13 +111,15 @@ When you create a park, then it's _guestbook entity_ automatically creates.
 	"text" : "It was amazing! Oszi"
 }
 ```
-| HTTP  | URL | JSON required|
+| HTTP  |  | JSON required|
 |---	|---	| ---|
 | **POST**  | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/book/{park_id}/{guest_id}   | true  |
 | GET | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/book/{park_id}/{guest_id}| --- |
 | GET | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/book}| --- |
 
 # _**Queries**_
+| Functionality  |  |
+|---	|---	|
 | Get guests by state (REST) | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/rest |
 | Get guests of a machine | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/park/{park_id}/machine/{machine_id} |
 | Get notes by guest id | http://localhost:8080/AmusementPark-web-1.0-SNAPSHOT/rest/book/note/{park_id}/{guest_id}|
